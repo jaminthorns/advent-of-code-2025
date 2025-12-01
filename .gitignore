@@ -1,0 +1,11 @@
+# The directory Mix will write compiled artifacts to.
+_build
+
+# The directory Mix downloads your dependencies sources to.
+deps
+
+# Directory of downloaded puzzle inputs.
+inputs
+
+# Secret config values.
+config/secret.exs
