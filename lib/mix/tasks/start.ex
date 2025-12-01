@@ -17,6 +17,9 @@ defmodule Mix.Tasks.Start do
 
     case Input.get_input(day) do
       {:ok, input} ->
+        module_path |> Path.dirname() |> File.mkdir_p!()
+        input_path |> Path.dirname() |> File.mkdir_p!()
+
         File.write!(module_path, module_content)
         File.write!(input_path, input)
 
