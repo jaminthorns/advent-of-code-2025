@@ -5,7 +5,7 @@ defmodule AdventOfCode.MixProject do
     [
       app: :advent_of_code,
       version: "0.1.0",
-      elixir: "~> 1.17",
+      elixir: "~> 1.19",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -18,6 +18,6 @@ defmodule AdventOfCode.MixProject do
   end
 
   defp deps do
-    [{:req, "~> 0.5.8"}]
+    [{:req, "~> 0.5.16"}]
   end
 end
