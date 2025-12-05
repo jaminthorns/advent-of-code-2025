@@ -13,17 +13,23 @@ defmodule Mix.Tasks.Solve do
     if String.to_integer(day) in Solution.implemented_days() do
       case args do
         [day] ->
-          {part_1_solution, part_2_solution} = Solution.solve(day)
+          {{time_1, solution_1}, {time_2, solution_2}} = Solution.solve_timed(day)
 
-          IO.puts("Part 1: #{inspect(part_1_solution)}")
-          IO.puts("Part 2: #{inspect(part_2_solution)}")
+          IO.puts("Part 1: #{inspect(solution_1)} #{format_time(time_1)}")
+          IO.puts("Part 2: #{inspect(solution_2)} #{format_time(time_2)}")
 
         [day, part] ->
           part = String.to_integer(part)
-          IO.puts(day |> Solution.solve(part) |> inspect())
+          {time, solution} = Solution.solve_timed(day, part)
+
+          IO.puts("#{inspect(solution)} #{format_time(time)}")
       end
     else
       IO.puts(:stderr, ANSI.red() <> "This day is not yet implemented.")
     end
+  end
+
+  def format_time(microseconds) do
+    ANSI.light_black() <> "#{microseconds / 1000}ms" <> ANSI.reset()
   end
 end

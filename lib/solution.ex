@@ -3,25 +3,28 @@ defmodule Solution do
   @callback solve_part_2(input :: binary) :: any
 
   @doc """
-  Solve both parts of a puzzle for a given `day`.
+  Solve both parts of a puzzle for a given `day` with timing.
   """
-  def solve(day) do
+  def solve_timed(day) do
     module = module(day)
     input = Input.read(day)
 
-    {module.solve_part_1(input), module.solve_part_2(input)}
+    {
+      :timer.tc(fn -> module.solve_part_1(input) end),
+      :timer.tc(fn -> module.solve_part_2(input) end)
+    }
   end
 
   @doc """
-  Solve a puzzle for a given `day` and `part`.
+  Solve a puzzle for a given `day` and `part` with timing.
   """
-  def solve(day, part) do
+  def solve_timed(day, part) do
     module = module(day)
     input = Input.read(day)
 
     case part do
-      1 -> module.solve_part_1(input)
-      2 -> module.solve_part_2(input)
+      1 -> :timer.tc(fn -> module.solve_part_1(input) end)
+      2 -> :timer.tc(fn -> module.solve_part_2(input) end)
     end
   end
 
