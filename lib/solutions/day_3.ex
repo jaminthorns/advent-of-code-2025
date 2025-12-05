@@ -1,4 +1,6 @@
 defmodule Solutions.Day3 do
+  alias Util.Parsing
+
   @behaviour Solution
 
   @test_input """
@@ -34,7 +36,7 @@ defmodule Solutions.Day3 do
     |> Enum.map(fn line ->
       line
       |> String.graphemes()
-      |> Enum.map(&String.to_integer/1)
+      |> Parsing.integers()
     end)
   end
 
